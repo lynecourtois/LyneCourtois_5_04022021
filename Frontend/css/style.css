@@ -1,0 +1,40 @@
+/*General settings*/
+*{
+	margin: 0;
+	padding: 0;
+}
+
+h1{
+	text-align: center;
+	padding: 25px 0;
+	background-color: black;
+	color: white;
+}
+
+.box{
+	width: 90%;
+	margin: auto;
+}
+
+/*Index page*/
+	/*Header*/
+		h1 i{
+			padding-right: 2%;
+		}
+
+	/*Article*/
+		h2{
+			margin-top: 100px;
+		}
+
+		#products{
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+		}
+
+		figure{
+			width: 30%;
+			background-color: black;
+		}
+
