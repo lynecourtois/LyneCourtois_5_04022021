@@ -9,32 +9,57 @@
 	</head>
 
 	<body>
+		<!--Header-->
 		<header>
 			<a href="index.html" class="header_title"><i class="fas fa-shopping-cart"></i>Orinoco</a>
 			<a href="basket.html"> Panier</a>
 		</header>
 
-		<main>
+		<main class="basket">
 			<h1 class="big_title">Votre Panier</h1>
+
+			<!--Basket contents-->
 			<div class="ordered">
-				<div class="ordered_articles"></div>
+				<h2>Vos articles</h2>
+				<div class="ordered_article">
 					<img src="../Backend/images/teddy_1.jpg">
 					<div>
-						<p>Nom</p>
-						<p>Prix</p>
+						<h3>Ours en peluche fait main</h3>
+						<p>20€</p>
 					</div>
+					<!--Javascript text-->
 				</div>
-				<p>Prix</p>
+				<!--Total price-->
+				<p class="total_price">Prix total</p>
 			</div>
+
+			<!--Contact information-->
 			<form>
+				<h2>Vos coordonnées</h2>
 				<div>
-					<input type="text" name="firstName">
-					<input type="text" name="lastName">
+					<!--First name-->
+					<label for="firstName">Prénom:</label>
+					<input type="text" id="firstName" name="firstName">
+
+					<!--Last name-->
+					<label for="lastName">Nom:</label>
+					<input type="text" id="lastName" name="lastName">
 				</div>
 				
-				<input type="email" name="email">
-				<input type="text" name="address">
-				<input type="text" name="city">
+				<!--Email-->
+				<label for="email">Email:</label><br>
+				<input type="email" id="email" name="email" value="">
+
+				<!--Adress-->
+				<label for="address">Adresse:</label><br>
+				<input type="text" id="address" name="address">
+
+				<!--City-->
+				<label for="city">Ville:</label><br>
+				<input type="text" id="city" name="city">
+
+				<!--Submit Button-->
+				<input type="submit" value="Commander">
 			</form>
 		</main>
 	</body>
