@@ -13,12 +13,14 @@ fetch(url, {method : 'GET'})
 	products.forEach(product =>{
 		console.log(product.name)
 		console.log(product.price)
+		let newPrice = product.price /100
+		console.log(newPrice)
 		myHTML += `<figure>
 						<img src="${product.imageUrl}" alt="${product.name}">
 						<figcaption>
 							<h2>${product.name}</h2>
-							<p>${product.price}</p>
-							<a href="product.html">Voir le produit</a>
+							<p>${newPrice}€</p>
+							<a href="product.html?id_product=${product._id}">Voir le produit</a>
 						</figcaption>
 					</figure>`
 	});
