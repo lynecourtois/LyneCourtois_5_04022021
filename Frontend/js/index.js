@@ -1,20 +1,29 @@
 let url = 'http://localhost:3000/api/teddies';
 
-
+//Récupération des objets
 fetch(url, {method : 'GET'})
 .then(data => {
 	return data.json()
+
+//Objets en Json
 }).then(products =>{
 	console.log(products)
 
+	//Variable de remplacement de code
 	let HTML = document.getElementById("products")
 
 	let myHTML = ""
+
+	//Ajout des produits
 	products.forEach(product =>{
 		console.log(product.name)
 		console.log(product.price)
+
+		//modification du prix
 		let newPrice = product.price /100
 		console.log(newPrice)
+
+		//Modification du HTMl
 		myHTML += `<figure>
 						<img src="${product.imageUrl}" alt="${product.name}">
 						<figcaption>
