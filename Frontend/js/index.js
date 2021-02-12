@@ -20,7 +20,7 @@ fetch(url, {method : 'GET'})
 						<figcaption>
 							<h2>${product.name}</h2>
 							<p>${newPrice}€</p>
-							<a href="product.html?id_product=${product._id}">Voir le produit</a>
+							<a href="product.html?given_id=${product._id}">Voir le produit</a>
 						</figcaption>
 					</figure>`
 	});

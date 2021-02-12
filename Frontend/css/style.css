@@ -85,35 +85,45 @@ a{
 	}
 
 /*Product page*/
-	.object{
+	#object{
 		display: flex;
 		justify-content: space-between;
 	}
 
-	.object img{
+	#object img{
 		width: 50%;
 		max-height: 100%;
 	}
 
-	.description{
+	#description{
 		width: 50%;
 		background-color: lightgray;
 		padding: 50px 30px;
 	}
 
-	#desc-product{
-		display: flex;
-		justify-content: space-between;
-		margin-bottom: 9%;
-		padding-right: 15%;
+	#description label {
+		margin: 0;
 	}
 
-	#desc-product h2{
+	.desc-product{
+		display: flex;
+		justify-content: space-between;
+		margin: 0 10% 9% 0;
+	}
+
+	.desc-product h2{
 		margin-bottom: 15px;
+	}
+
+	.desc-product div{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 	}
 
 	button{
 		margin-top: 10%;
+		padding: 1%;
 	}
 
 	select{
