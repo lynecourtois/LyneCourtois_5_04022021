@@ -1,4 +1,4 @@
-let url = 'http://localhost:3000/api/teddies';
+let url = 'http://localhost:3000/api/teddies' 
 
 //Récupération des objets
 fetch(url, {method : 'GET'})
@@ -20,19 +20,19 @@ fetch(url, {method : 'GET'})
 		console.log(product.price)
 
 		//modification du prix
-		let newPrice = product.price /100
-		console.log(newPrice)
+		let originalPrice = product.price /100
+  		let newPrice = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(originalPrice)
 
 		//Modification du HTMl
 		myHTML += `<figure>
 						<img src="${product.imageUrl}" alt="${product.name}">
 						<figcaption>
 							<h2>${product.name}</h2>
-							<p>${newPrice}€</p>
+							<p>${newPrice}</p>
 							<a href="product.html?given_id=${product._id}">Voir le produit</a>
 						</figcaption>
 					</figure>`
-	});
+	}) 
 
 	console.log(myHTML)
 	HTML.innerHTML = myHTML

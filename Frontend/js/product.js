@@ -1,10 +1,10 @@
 //récupération du paramètre de l'URL
-const urlParams = new URLSearchParams(window.location.search);
-const productId = urlParams.get("given_id");
-console.log(productId);
+const urlParams = new URLSearchParams(window.location.search) 
+const productId = urlParams.get("given_id") 
+console.log(productId) 
 
 
-let url = `http://localhost:3000/api/teddies/${productId}`;
+let url = `http://localhost:3000/api/teddies/${productId}` 
 
 
 //Récupération des objets
@@ -22,7 +22,8 @@ fetch(url, {method : 'GET'})
 	let newHTML = ""
 
 	//modification du prix
-  	let newPrice = article.price /100
+	let originalPrice = article.price /100
+  	let newPrice = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(originalPrice)
 
   	//Modification du HTMl
   	myHTML = `<img src="${article.imageUrl}">
@@ -31,7 +32,7 @@ fetch(url, {method : 'GET'})
 					<div class="desc-product">
 						<div>
 							<h2>${article.name}</h2>
-							<p>${newPrice}€</p>
+							<p>${newPrice}</p>
 						</div>
 
 						<div>
@@ -45,7 +46,7 @@ fetch(url, {method : 'GET'})
 					<p>${article.description}</p>
 
 					<!--Submit Button-->
-					<button type="submit" onclick="">Ajouter au Panier</button>
+					<button id="addtobasket">Ajouter au Panier</button>
 				</form>`
 
 	HTML.innerHTML = myHTML
@@ -61,9 +62,63 @@ fetch(url, {method : 'GET'})
 	article.colors.forEach(optionColor =>{
 		console.log(optionColor)
 		newoption += `<option value="${optionColor}">${optionColor}</option>`
-	});
+	}) 
 
 	console.log(newoption)
 
 	option.innerHTML = newoption
+
+
+
+
+
+	//Sélection de la variable du bouton
+	let btnBasket = document.getElementById("addtobasket")
+	console.log(btnBasket)
+
+	//Réaction en cas de clic
+	btnBasket.addEventListener("click", event => {
+		event.preventDefault() 
+		console.log("click OK")
+
+		newBasketProduct = {
+			id : article._id,
+		}
+
+
+
+		console.log(localStorage.length)
+
+		if (localStorage.length != 0) {
+			console.log("Panier rempli")
+
+		}else{
+			console.log("rien dans le panier")
+			//Travaille des données
+			basketproducts = JSON.stringify(newBasketProduct)
+
+			//Ajout dans le localstorage
+			localStorage.setItem('basket', basketproducts)
+		}
+
+		console.log(localStorage)
+
+		// si un panier, on ajoute au panier
+
+			//Travaille des données
+
+			//Ajout dans le localstorage
+
+		//sinon créer un tableau dans le localstorage
+
+
+
+		/*//Travaille des données
+		basketproducts = JSON.stringify(newBasketProduct)
+
+		//Ajout dans le localstorage
+		localStorage.setItem('basket', basketproducts)*/
+
+		//localStorage.clear();
+	})
 })
