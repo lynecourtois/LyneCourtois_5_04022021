@@ -72,53 +72,51 @@ fetch(url, {method : 'GET'})
 
 
 
-	//Sélection de la variable du bouton
+	//Sélection de la variable du bouton au panier
 	let btnBasket = document.getElementById("addtobasket")
 	console.log(btnBasket)
+	console.log(localStorage.basket)
 
 	//Réaction en cas de clic
 	btnBasket.addEventListener("click", event => {
 		event.preventDefault() 
 		console.log("click OK")
 
-		newBasketProduct = {
-			id : article._id,
-		}
+		//Tableau
+		let basketObject = [
+			article._id,
+		]
+		console.log(basketObject)
 
-
-
-		console.log(localStorage.length)
-
-		if (localStorage.length != 0) {
-			console.log("Panier rempli")
-
-		}else{
+		//la condition du panier vide Vrai
+		if (localStorage.length == 0) {
 			console.log("rien dans le panier")
-			//Travaille des données
-			basketproducts = JSON.stringify(newBasketProduct)
 
-			//Ajout dans le localstorage
-			localStorage.setItem('basket', basketproducts)
+			//Objet transformé en JSON
+			let basketProducts = JSON.stringify(basketObject)
+
+			//Le localStorage créé avec l'objet
+			localStorage.setItem('basket', basketProducts)
+
+		//la condition du panier vide Fausse (donc le panier est plein)
+		}else{
+			console.log("Panier déjà rempli")
+
+			//Panier récupéré et transformé en JSON
+			let oldBasket = localStorage.getItem('basket')
+
+			let newBasketObjects = JSON.parse(oldBasket)
+
+
+			//Object ajouté au panier
+			newBasketObjects.push(article._id);
+
+
+			let basketProducts = JSON.stringify(newBasketObjects)
+			console.log(basketProducts)
+
+			//LocalStorage rajouté
+			localStorage.setItem('basket', basketProducts)
 		}
-
-		console.log(localStorage)
-
-		// si un panier, on ajoute au panier
-
-			//Travaille des données
-
-			//Ajout dans le localstorage
-
-		//sinon créer un tableau dans le localstorage
-
-
-
-		/*//Travaille des données
-		basketproducts = JSON.stringify(newBasketProduct)
-
-		//Ajout dans le localstorage
-		localStorage.setItem('basket', basketproducts)*/
-
-		//localStorage.clear();
 	})
 })
