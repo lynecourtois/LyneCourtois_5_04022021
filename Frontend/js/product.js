@@ -118,5 +118,8 @@ fetch(url, {method : 'GET'})
 			//LocalStorage rajouté
 			localStorage.setItem('basket', basketProducts)
 		}
+
+		alert('article ajouté au panier')
+		//localStorage.clear()
 	})
 })
