@@ -26,6 +26,7 @@
 						<img src="../Backend/images/teddy_1.jpg" alt="Ours en peluche">
 						<div>
 							<h3>Ours en peluche fait main</h3>
+							<p>Couleur<p>
 							<p>20€</p>
 						</div>
 					</div>-->
@@ -40,26 +41,26 @@
 				<h2>Vos coordonnées</h2>
 				<!--First name-->
 				<label for="firstName">Prénom:</label>
-				<input type="text" id="firstName" name="firstName">
+				<input type="text" id="firstName" name="firstName" required>
 
 				<!--Last name-->
 				<label for="lastName">Nom:</label>
-				<input type="text" id="lastName" name="lastName">
+				<input type="text" id="lastName" name="lastName" required>
 				
 				<!--Email-->
 				<label for="email">Email:</label><br>
-				<input type="email" id="email" name="email" value="">
+				<input type="email" id="email" name="email" required>
 
 				<!--Adress-->
 				<label for="address">Adresse:</label><br>
-				<input type="text" id="address" name="address">
+				<input type="text" id="address" name="address" required>
 
 				<!--City-->
 				<label for="city">Ville:</label><br>
-				<input type="text" id="city" name="city">
+				<input type="text" id="city" name="city" required>
 
 				<!--Submit Button-->
-				<input type="submit" value="Commander">
+				<input id="order" type="submit" value="Commander" disabled="disabled">
 			</form>
 		</main>
 		<script src="js/basket.js" type="text/javascript"></script>

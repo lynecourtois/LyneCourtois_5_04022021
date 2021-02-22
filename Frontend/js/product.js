@@ -23,7 +23,7 @@ fetch(url, {method : 'GET'})
 
 	//modification du prix
 	let originalPrice = article.price /100
-  	let newPrice = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(originalPrice)
+  	let newPrice = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(originalPrice)
 
   	//Modification du HTMl
   	myHTML = `<img src="${article.imageUrl}">
@@ -46,7 +46,7 @@ fetch(url, {method : 'GET'})
 					<p>${article.description}</p>
 
 					<!--Submit Button-->
-					<button id="addtobasket">Ajouter au Panier</button>
+					<button id="addtobasket" type="submit">Ajouter au Panier</button>
 				</form>`
 
 	HTML.innerHTML = myHTML
@@ -71,29 +71,39 @@ fetch(url, {method : 'GET'})
 
 
 
-
 	//Sélection de la variable du bouton au panier
-	let btnBasket = document.getElementById("addtobasket")
-	console.log(btnBasket)
-	console.log(localStorage.basket)
+	const form = document.querySelector('form');
+	console.log(form)
+	console.log(localStorage)
 
 	//Réaction en cas de clic
-	btnBasket.addEventListener("click", event => {
-		event.preventDefault() 
+	form.addEventListener("submit", event => {
+		event.preventDefault()
+		//console.log('Nom:', event.target.color.value)
+		let selectColor = event.target.color.value
+
+		console.log(selectColor)
 		console.log("click OK")
 
 		//Tableau
-		let basketObject = [
-			article._id,
-		]
-		console.log(basketObject)
+		let basketObject = {
+			id : article._id,
+			imageUrl : article.imageUrl,
+			name : article.name,
+			price : article.price,
+			color : selectColor,
+		}
 
 		//la condition du panier vide Vrai
 		if (localStorage.length == 0) {
 			console.log("rien dans le panier")
 
+			//Object ajouté au panier
+			let newBasketObjects = []
+			newBasketObjects.push(basketObject);
+
 			//Objet transformé en JSON
-			let basketProducts = JSON.stringify(basketObject)
+			let basketProducts = JSON.stringify(newBasketObjects)
 
 			//Le localStorage créé avec l'objet
 			localStorage.setItem('basket', basketProducts)
@@ -107,9 +117,9 @@ fetch(url, {method : 'GET'})
 
 			let newBasketObjects = JSON.parse(oldBasket)
 
-
 			//Object ajouté au panier
-			newBasketObjects.push(article._id);
+			newBasketObjects.push(basketObject);
+			console.log(newBasketObjects)
 
 
 			let basketProducts = JSON.stringify(newBasketObjects)

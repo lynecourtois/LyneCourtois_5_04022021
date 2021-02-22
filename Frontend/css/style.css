@@ -157,6 +157,10 @@ a{
 		border-radius: 2px;
 	}
 
+	.basket input:invalid{
+		border-color: red;
+	}
+
 	.basket input[type=submit]{
 		width: 20%;
 		background-color: white;
@@ -168,6 +172,11 @@ a{
 		color: white;
 	}
 
+	.basket input[type=submit]:disabled{
+		background-color: black;
+		color: grey
+	}
+
 	.ordered{
 		display: flex;
 		flex-direction: column;
@@ -177,6 +186,10 @@ a{
 
 	.ordered h2{
 		align-self: flex-start;
+	}
+
+	.ordered h3{
+		margin-bottom: 10%;
 	}
 
 	.ordered button{
@@ -191,7 +204,7 @@ a{
 	}
 
 	.ordered_article img{
-		width: 12%;
+		width: 15%;
 	}
 
 	.ordered_article div{
@@ -203,17 +216,26 @@ a{
 		padding: 2%;
 	}
 
+	.ordered_article div div{
+		flex-direction: column;
+		align-items: flex-start;
+		width: auto;
+		padding: 0;
+	}
+
 	#total_price{
 		background-color: lightgray;
 		border: 2px black solid;
 		border-top: none;
 		border-radius: 2px;
-		padding: 5px;
+		padding: 9px 16px;
 	}
 
 	label{
 		margin: 0 10px;
 	}
+
+
 
 /*Confirmation page*/
 	.confirmation .big_title, .purchase_id{

@@ -21,7 +21,7 @@ fetch(url, {method : 'GET'})
 
 		//modification du prix
 		let originalPrice = product.price /100
-  		let newPrice = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(originalPrice)
+  		let newPrice = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(originalPrice)
 
 		//Modification du HTMl
 		myHTML += `<figure>
