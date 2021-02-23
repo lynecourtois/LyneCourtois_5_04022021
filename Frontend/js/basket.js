@@ -34,17 +34,13 @@ basket.forEach(article_order =>{
 
 })
 
-
-
-
-/*
-
+//Initialisation des variables
 let firstName = document.getElementById('firstName')
 let lastName = document.getElementById('lastName')
 let email = document.getElementById('email')
 let address = document.getElementById('address')
 let city = document.getElementById('city')
-const btnOrder = document.getElementById("order")
+let btnOrder = document.getElementById("order")
 
 let firstNameValid = ""
 let lastNameValid = ""
@@ -52,98 +48,87 @@ let emailValid = ""
 let addressValid = ""
 let cityValid = ""
 
-// function validation (finalValue, elt, validValue) {
-// 	let regexValide = finalValue.test(elt);
-// 	console.log(regexValide)
-
-// 	if (regexValide){
-// 		validValue = true
-
-// 	}else{
-// 		validValue = false
-// 	}
-
-// 	if (firstNameValid && lastNameValid && emailValid && addressValid && cityValid) {
-// 	btnOrder.removeAttribute("disabled")
-// 	}else{
-// 		btnOrder.removeAttribute("disabled")
-// 		btnOrder.setAttribute("disabled", "disabled")
-// 	}
-// }
-
-function validation (finalValue, elt) {
-	let regexValide = finalValue.test(elt);
-	console.log(regexValide)
+//Fonction
+function validation (regex, elt) {
+	let regexValide = regex.test(elt);
 
 	if (regexValide){
 		return true
 
 	}else{
-		return = false
+		return false
 	}
 }
 
-// function disable
+function disable(){
+	btnOrder.removeAttribute("disabled")
+	if (!firstNameValid || !lastNameValid || !emailValid || !addressValid || !cityValid) {
+		btnOrder.setAttribute("disabled", "disabled")
+ 	}
+}
 
+function message(message, eltValid){
+	if (eltValid != true && message) {
+		alert(message)
+	}
+}
 
-firstName.addEventListener('input', (event) =>{
+function validationStatus(inputElt, regex){
+	let eltValue = inputElt.value
+	console.log(eltValue)
+	return validation(regex, eltValue)
+}
+
+//Vérification des intputs à l'apparission de la page
+firstNameValid = validationStatus(firstName, /^[a-zA-Z -]+$/)
+lastNameValid = validationStatus(lastName, /^[a-zA-Z -]+$/)
+emailValid = validationStatus(email, /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/)
+addressValid = validationStatus(address, /^[0-9a-zA-Z -]+$/)
+cityValid = validationStatus(city, /^[a-zA-Z -]+$/)
+disable()
+
+//Vérification des inputs aux changements
+firstName.addEventListener('change', (event) =>{
 	let inputValue = event.target.value
-	firstNameValid = validation(/^[a-zA-Z -]+$/, inputValue, firstNameValid)
-	console.log(firstNameValid)
+	firstNameValid = validation(/^[a-zA-Z -]+$/, inputValue)
+	disable()
+	message("Seuls les lettres sont acceptés", firstNameValid)
 })
 
-lastName.addEventListener('input', (event) =>{
+lastName.addEventListener('change', (event) =>{
 	let inputValue = event.target.value
-	validation(/^[a-zA-Z -]+$/, inputValue, lastNameValid)
+	lastNameValid = validation(/^[a-zA-Z -]+$/, inputValue)
+	disable()
+	message("Seuls les lettres sont acceptés", lastNameValid)
 })
 
-email.addEventListener('input', (event) =>{
+email.addEventListener('change', (event) =>{
 	let inputValue = event.target.value
-	validation(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/, inputValue, emailValid)
+	emailValid = validation(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/, inputValue)
+	disable()
+	message("Le format n'est pas valide", emailValid)
 })
 
-address.addEventListener('input', (event) =>{
+address.addEventListener('change', (event) =>{
 	let inputValue = event.target.value
-	validation(/^[0-9a-zA-Z -]+$/, inputValue,addressValid)
+	addressValid = validation(/^[0-9a-zA-Z -]+$/, inputValue)
+	disable()
+	message("Seuls les lettres et les chiffres sont acceptés", addressValid)
 })
 
-city.addEventListener('input', (event) =>{
+city.addEventListener('change', (event) =>{
 	let inputValue = event.target.value
-	validation(/^[a-zA-Z -]+$/, inputValue, cityValid)
+	cityValid = validation(/^[0-9a-zA-Z -]+$/, inputValue)
+	disable()
+	message("Seuls les lettres et les chiffres sont acceptés", cityValid)
 })
-
-// console.log(firstNameValid)
-// console.log(lastNameValid)
-// console.log(emailValid)
-// console.log(addressValid)
-// console.log(cityValid)
 
 
 
 //Bouton cliqué
-/*let btnOrder = document.getElementById("order")
-console.log(btnOrder)
+/*console.log(btnOrder)
 btnOrder.addEventListener("click", event => {
 	console.log("click OK")
-
-//Vérification du contact
-//les inputs
-let firstName = document.getElementById('firstName')
-let lastName = document.getElementById('lastName')
-let email = document.getElementById('email')
-let address = document.getElementById('address')
-let city = document.getElementById('city')
-
-//Les fonctions
-	//Vérification du prénom
-	//#^[a-z]$#
-
-	//Vérification du nom
-	//#^[a-z]$#
-
-	//vérification du Email avec des expressions régulières
-	//#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#
-
 
 //récupération du contact
 
