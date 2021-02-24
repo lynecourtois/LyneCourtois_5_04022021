@@ -79,7 +79,6 @@ fetch(url, {method : 'GET'})
 	//Réaction en cas de clic
 	form.addEventListener("submit", event => {
 		event.preventDefault()
-		//console.log('Nom:', event.target.color.value)
 		let selectColor = event.target.color.value
 
 		console.log(selectColor)

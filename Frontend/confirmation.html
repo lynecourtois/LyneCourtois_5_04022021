@@ -14,19 +14,26 @@
 		</header>
 
 		<main class="confirmation">
-			<h1 class="big_title">Merci <span>John Doe</span> pour votre commande. Voici l'identifiant votre achat : <br></h1>
-			<p class="purchase_id">152842843684</p>
+			<div id="confirmation_text">
+				<h1 class="big_title">Merci <span>John Doe</span> pour votre commande. Voici l'identifiant votre achat : <br></h1>
+				<p class="purchase_id">152842843684</p>
+			</div>
 
-			<div class="purchase">
-				<div class="purchase_article">
-					<p>Ours en peluche fait main</p>
-					<p>20€</p>
-					<!--Javascript text-->
+			<div id="purchase" class="ordered">
+				<div id="purchase_articles">
+					<!--<div class="ordered_article">
+						<img src="../Backend/images/teddy_1.jpg" alt="Ours en peluche">
+						<div>
+							<p>Ours en peluche fait main</p>
+							<p>20€</p>
+						</div>
+					</div>-->
 				</div>
-				<!--Total price-->
-				<p class="total_price">Prix total</p>
+
+				<p id="total_price">Prix total</p>
 			</div>
 		</main>
+		<script src="js/confirmation.js" type="text/javascript"></script>
 	</body>
 
 </html>

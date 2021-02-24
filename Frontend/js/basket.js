@@ -9,6 +9,7 @@ let myHTML = ""
 let totalPrice = document.getElementById("total_price")
 let newTotalPrice = 0
 
+//Apparition des articles et de leur prix total 
 basket.forEach(article_order =>{
 	
 	//modification du prix
@@ -75,7 +76,6 @@ function message(message, eltValid){
 
 function validationStatus(inputElt, regex){
 	let eltValue = inputElt.value
-	console.log(eltValue)
 	return validation(regex, eltValue)
 }
 
@@ -126,18 +126,50 @@ city.addEventListener('change', (event) =>{
 
 
 //Bouton cliqué
-/*console.log(btnOrder)
-btnOrder.addEventListener("click", event => {
+const form = document.querySelector('form');
+let url = "http://localhost:3000/api/teddies/order"
+form.addEventListener("submit", event => {
+	event.preventDefault()
 	console.log("click OK")
 
-//récupération du contact
+	//récupération du contact
+	let contact = {
+		firstName : document.getElementById('firstName').value,
+		lastName : document.getElementById('lastName').value,
+		email : document.getElementById('email').value,
+		address : document.getElementById('address').value,
+		city : document.getElementById('city').value,
+	}
 
+	//Récupération des produits
+	let products = []
+	basket.forEach(product => {
+		products.push(product.id)
+	})
 
-//Récupération des produits
+	//Compilation
+	const request = {
+		contact : contact,
+		products : products,
+	}
+	console.log(request)
 
+	//Envois au http://localhost:3000/api/teddies/order
+	const options = {
+	    method: 'POST',
+	    body: JSON.stringify(request),
+	    headers: {
+	        'Content-Type': 'application/json'
+	    }
+	}
 
-//Envois au http://localhost:3000/api/teddies/order
-
-
-//Redirection -> confirmation.html
-})*/
+	fetch(url, options)
+    .then(res => res.json())
+    .then(res => {
+    	let order = JSON.stringify(res)
+    	localStorage.setItem('order', order)
+    	console.log(localStorage)
+    	window.location.href = 'confirmation.html';
+    })
+	//Redirection -> confirmation.html
+})
