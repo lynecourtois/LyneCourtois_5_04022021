@@ -49,6 +49,11 @@ let emailValid = ""
 let addressValid = ""
 let cityValid = ""
 
+//Regex
+let lettersNumbersRg = /^[-'a-zA-Z0-9À-ÖØ-öø-ÿ\s]+$/
+let lettersRg = /^[-'a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/
+let emailRg = /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/
+
 //Fonction
 function validation (regex, elt) {
 	let regexValide = regex.test(elt);
@@ -80,45 +85,45 @@ function validationStatus(inputElt, regex){
 }
 
 //Vérification des intputs à l'apparission de la page
-firstNameValid = validationStatus(firstName, /^[a-zA-Z -]+$/)
-lastNameValid = validationStatus(lastName, /^[a-zA-Z -]+$/)
-emailValid = validationStatus(email, /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/)
-addressValid = validationStatus(address, /^[0-9a-zA-Z -]+$/)
-cityValid = validationStatus(city, /^[a-zA-Z -]+$/)
+firstNameValid = validationStatus(firstName, lettersRg)
+lastNameValid = validationStatus(lastName, lettersRg)
+emailValid = validationStatus(email, emailRg)
+addressValid = validationStatus(address, lettersNumbersRg)
+cityValid = validationStatus(city, lettersNumbersRg)
 disable()
 
 //Vérification des inputs aux changements
 firstName.addEventListener('change', (event) =>{
 	let inputValue = event.target.value
-	firstNameValid = validation(/^[a-zA-Z -]+$/, inputValue)
+	firstNameValid = validation(lettersRg, inputValue)
 	disable()
 	message("Seuls les lettres sont acceptés", firstNameValid)
 })
 
 lastName.addEventListener('change', (event) =>{
 	let inputValue = event.target.value
-	lastNameValid = validation(/^[a-zA-Z -]+$/, inputValue)
+	lastNameValid = validation(lettersRg, inputValue)
 	disable()
 	message("Seuls les lettres sont acceptés", lastNameValid)
 })
 
 email.addEventListener('change', (event) =>{
 	let inputValue = event.target.value
-	emailValid = validation(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/, inputValue)
+	emailValid = validation(emailRg, inputValue)
 	disable()
 	message("Le format n'est pas valide", emailValid)
 })
 
 address.addEventListener('change', (event) =>{
 	let inputValue = event.target.value
-	addressValid = validation(/^[0-9a-zA-Z -]+$/, inputValue)
+	addressValid = validation(lettersNumbersRg, inputValue)
 	disable()
 	message("Seuls les lettres et les chiffres sont acceptés", addressValid)
 })
 
 city.addEventListener('change', (event) =>{
 	let inputValue = event.target.value
-	cityValid = validation(/^[0-9a-zA-Z -]+$/, inputValue)
+	cityValid = validation(lettersNumbersRg, inputValue)
 	disable()
 	message("Seuls les lettres et les chiffres sont acceptés", cityValid)
 })

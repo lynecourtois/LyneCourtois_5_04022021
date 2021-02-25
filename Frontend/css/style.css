@@ -236,6 +236,10 @@ a{
 	}
 
 /*Confirmation page*/
+	.confirmation{
+		margin-bottom: 3%;
+	}
+	
 	.confirmation .big_title, .purchase_id{
 		text-align: center;
 	}
