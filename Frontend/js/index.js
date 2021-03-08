@@ -1,29 +1,30 @@
+//Url initialisation
 let url = 'http://localhost:3000/api/teddies' 
 
-//Récupération des objets
+//Products recovery
 fetch(url, {method : 'GET'})
 .then(data => {
 	return data.json()
 
-//Objets en Json
+//Objects to Json
 }).then(products =>{
 	console.log(products)
 
-	//Variable de remplacement de code
+	//Code replacement variable
 	let HTML = document.getElementById("products")
 
 	let myHTML = ""
 
-	//Ajout des produits
+	//Add products
 	products.forEach(product =>{
 		console.log(product.name)
 		console.log(product.price)
 
-		//modification du prix
+		//Price modification
 		let originalPrice = product.price /100
   		let newPrice = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(originalPrice)
 
-		//Modification du HTMl
+		//HTML modification
 		myHTML += `<figure>
 						<img src="${product.imageUrl}" alt="${product.name}">
 						<figcaption>

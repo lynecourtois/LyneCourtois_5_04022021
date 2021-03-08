@@ -1,22 +1,22 @@
-//Récupération du panier
+//Basket recovery
 const basket = JSON.parse(localStorage.getItem('basket'))
 console.log(basket)
 
-//Variable de remplacement de code
+//Code replacement variable
 let HTML = document.getElementById("ordered_articles")
 let myHTML = ""
 
 let totalPrice = document.getElementById("total_price")
 let newTotalPrice = 0
 
-//Apparition des articles et de leur prix total 
+//Appearance of items and their total price
 basket.forEach(article_order =>{
 	
-	//modification du prix
+	//Price modification
 	let originalPrice = article_order.price /100
   	let newPrice = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(originalPrice)
 
-  	//Modification du HTMl
+  	//HTML modification
   	myHTML += `<div class="ordered_article">
 				<img src="${article_order.imageUrl}" alt="Ours en peluche">
 				<div>
@@ -35,7 +35,7 @@ basket.forEach(article_order =>{
 
 })
 
-//Initialisation des variables
+//Initialization of variables
 let firstName = document.getElementById('firstName')
 let lastName = document.getElementById('lastName')
 let email = document.getElementById('email')
@@ -49,12 +49,12 @@ let emailValid = ""
 let addressValid = ""
 let cityValid = ""
 
-//Regex
+//ReExp
 let lettersNumbersRg = /^[-'a-zA-Z0-9À-ÖØ-öø-ÿ\s]+$/
 let lettersRg = /^[-'a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/
 let emailRg = /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/
 
-//Fonction
+//Functions
 function validation (regex, elt) {
 	let regexValide = regex.test(elt);
 
@@ -84,7 +84,7 @@ function validationStatus(inputElt, regex){
 	return validation(regex, eltValue)
 }
 
-//Vérification des intputs à l'apparission de la page
+//Checking the inputs when the page appears
 firstNameValid = validationStatus(firstName, lettersRg)
 lastNameValid = validationStatus(lastName, lettersRg)
 emailValid = validationStatus(email, emailRg)
@@ -92,7 +92,7 @@ addressValid = validationStatus(address, lettersNumbersRg)
 cityValid = validationStatus(city, lettersNumbersRg)
 disable()
 
-//Vérification des inputs aux changements
+//Verification of inputs during changes
 firstName.addEventListener('change', (event) =>{
 	let inputValue = event.target.value
 	firstNameValid = validation(lettersRg, inputValue)
@@ -130,14 +130,14 @@ city.addEventListener('change', (event) =>{
 
 
 
-//Bouton cliqué
+//Button clicked
 const form = document.querySelector('form');
 let url = "http://localhost:3000/api/teddies/order"
 form.addEventListener("submit", event => {
 	event.preventDefault()
 	console.log("click OK")
 
-	//récupération du contact
+	//Contact recovery
 	let contact = {
 		firstName : document.getElementById('firstName').value,
 		lastName : document.getElementById('lastName').value,
@@ -146,7 +146,7 @@ form.addEventListener("submit", event => {
 		city : document.getElementById('city').value,
 	}
 
-	//Récupération des produits
+	//Products ID recovery
 	let products = []
 	basket.forEach(product => {
 		products.push(product.id)
@@ -159,7 +159,7 @@ form.addEventListener("submit", event => {
 	}
 	console.log(request)
 
-	//Envois au http://localhost:3000/api/teddies/order
+	//Send to http://localhost:3000/api/teddies/order
 	const options = {
 	    method: 'POST',
 	    body: JSON.stringify(request),
@@ -174,7 +174,8 @@ form.addEventListener("submit", event => {
     	let order = JSON.stringify(res)
     	localStorage.setItem('order', order)
     	console.log(localStorage)
+
+    	//Redirection
     	window.location.href = 'confirmation.html';
     })
-	//Redirection -> confirmation.html
 })

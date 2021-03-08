@@ -1,31 +1,31 @@
-//récupération du paramètre de l'URL
+//retrieving the URL parameter
 const urlParams = new URLSearchParams(window.location.search) 
 const productId = urlParams.get("given_id") 
 console.log(productId) 
 
-
+//Url initialisation
 let url = `http://localhost:3000/api/teddies/${productId}` 
 
 
-//Récupération des objets
+//Product recovery
 fetch(url, {method : 'GET'})
 .then(data => {
 	return data.json()
 
-//Objets en Json
+//Objects to Json
 }).then(article =>{
 	console.log(article)
 
-	//Variable de remplacement de code
+	//Code replacement variable
 	let HTML = document.getElementById("object")
 
 	let newHTML = ""
 
-	//modification du prix
+	///Price modification
 	let originalPrice = article.price /100
   	let newPrice = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(originalPrice)
 
-  	//Modification du HTMl
+  	//HTML modification
   	myHTML = `<img src="${article.imageUrl}">
 				<!--content-->
 				<form id="description">
@@ -53,12 +53,14 @@ fetch(url, {method : 'GET'})
 
 
 
-	//Modification des options
+	//Options modification
+	//Code replacement variable
 	let option = document.getElementById("color")
 	let newoption = ""
 
 	console.log(article.colors)
 
+	//Options initialisation
 	article.colors.forEach(optionColor =>{
 		console.log(optionColor)
 		newoption += `<option value="${optionColor}">${optionColor}</option>`
@@ -69,14 +71,12 @@ fetch(url, {method : 'GET'})
 	option.innerHTML = newoption
 
 
-
-
-	//Sélection de la variable du bouton au panier
+	//Form selection
 	const form = document.querySelector('form');
 	console.log(form)
 	console.log(localStorage)
 
-	//Réaction en cas de clic
+	//Reaction on click
 	form.addEventListener("submit", event => {
 		event.preventDefault()
 		let selectColor = event.target.color.value
@@ -84,7 +84,7 @@ fetch(url, {method : 'GET'})
 		console.log(selectColor)
 		console.log("click OK")
 
-		//Tableau
+		//Array
 		let basketObject = {
 			id : article._id,
 			imageUrl : article.imageUrl,
@@ -93,30 +93,30 @@ fetch(url, {method : 'GET'})
 			color : selectColor,
 		}
 
-		//la condition du panier vide Vrai
+		//The condition of the empty basket is True
 		if (localStorage.length == 0) {
 			console.log("rien dans le panier")
 
-			//Object ajouté au panier
+			//Object added to basket
 			let newBasketObjects = []
 			newBasketObjects.push(basketObject);
 
-			//Objet transformé en JSON
+			//Object transformed from JSON
 			let basketProducts = JSON.stringify(newBasketObjects)
 
-			//Le localStorage créé avec l'objet
+			//LocalStorage created with the object
 			localStorage.setItem('basket', basketProducts)
 
-		//la condition du panier vide Fausse (donc le panier est plein)
+		//The condition of the empty basket is False
 		}else{
 			console.log("Panier déjà rempli")
 
-			//Panier récupéré et transformé en JSON
+			//Basket retrieved and transformed into JSON
 			let oldBasket = localStorage.getItem('basket')
 
 			let newBasketObjects = JSON.parse(oldBasket)
 
-			//Object ajouté au panier
+			//Object added to basket
 			newBasketObjects.push(basketObject);
 			console.log(newBasketObjects)
 
@@ -124,11 +124,10 @@ fetch(url, {method : 'GET'})
 			let basketProducts = JSON.stringify(newBasketObjects)
 			console.log(basketProducts)
 
-			//LocalStorage rajouté
+			//LocalStorage added
 			localStorage.setItem('basket', basketProducts)
 		}
 
 		alert('article ajouté au panier')
-		//localStorage.clear()
 	})
 })
