@@ -131,3 +131,6 @@ fetch(url, {method : 'GET'})
 		alert('article ajouté au panier')
 	})
 })
+.catch(function(error) {
+  alert('Ressource non trouvée')
+})

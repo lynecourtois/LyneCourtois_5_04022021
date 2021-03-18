@@ -178,4 +178,7 @@ form.addEventListener("submit", event => {
     	//Redirection
     	window.location.href = 'confirmation.html';
     })
+    .catch(function(error) {
+	  alert('Impossible d\'envoyer la requête');
+	})
 })

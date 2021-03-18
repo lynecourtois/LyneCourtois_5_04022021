@@ -38,3 +38,6 @@ fetch(url, {method : 'GET'})
 	console.log(myHTML)
 	HTML.innerHTML = myHTML
 })
+.catch(function(error) {
+  alert('Ressource non trouvée')
+})
